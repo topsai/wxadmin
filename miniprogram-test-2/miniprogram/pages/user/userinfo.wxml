@@ -1,0 +1,40 @@
+<view>
+  <!-- 轮播大图 -->
+  <view style='winth:100%'>
+    <image style='width:100%;' src="http://127.0.0.1:8000/static/images/flower.jpg"></image>
+  </view>
+</view>
+
+<view style='width:100%; display: flex;'>
+  <!-- 详情 -->
+  <view style='width:370rpx; border:5px solid white;' bindtap='buy' data-id='1'>
+    <image style='width:100%' src="http://127.0.0.1:8000/static/images/flo.jpg"></image>
+    <view> 花1 99元</view>
+  </view>
+  <view style='width:370rpx; border:5px solid white;' bindtap='buy' data-id='2'>
+    <image style='width:100%' src="http://127.0.0.1:8000/static/images/flo.jpg"></image>
+    <view> 花2 199元</view>
+  </view>
+</view>
+<view style='width:100%; display: flex;'>
+  <!-- 详情 -->
+  <view style='width:370rpx; border:5px solid white;' bindtap='buy' data-id='3'>
+    <image style='width:100%' src="http://127.0.0.1:8000/static/images/flo.jpg"></image>
+    <view> 花3 99元</view>
+  </view>
+  <view style='width:370rpx; border:5px solid white;' bindtap='buy' data-id='4'>
+    <image style='width:100%' src="http://127.0.0.1:8000/static/images/flo.jpg"></image>
+    <view> 花4 199元</view>
+  </view>
+</view>
+
+
+
+<!-- <block wx:for="{{images1}}" wx:key="key">
+  <view>
+    <view>{{index}}-{{item.image_name}}</view>
+    <view  class='flo'>
+      <image  class='flo' src="{{item.image_path}}"></image>
+    </view>
+  </view>
+</block> -->

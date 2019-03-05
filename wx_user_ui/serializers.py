@@ -24,4 +24,4 @@ class ShopNameSerializer(serializers.HyperlinkedModelSerializer):
 class CommoditySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Commodity
-        fields = ('id', 'name', 'min_price', 'max_price', 'pic')
+        fields = ('id', 'name', 'min_price', 'max_price', 'pic', 'commodity_info')

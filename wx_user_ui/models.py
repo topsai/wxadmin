@@ -43,3 +43,33 @@ class BigImage(models.Model):
         verbose_name = '大图'
         verbose_name_plural = '大图'
         ordering = ("image_id",)
+
+
+class ShopName(models.Model):
+    image_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = '店铺名称'
+        verbose_name_plural = '店铺名称'
+
+
+# 商品
+class Commodity(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
+    # 现价
+    min_price = models.SmallIntegerField()
+    # 原价
+    max_price = models.SmallIntegerField()
+    pic = models.CharField(max_length=256)
+
+    commodity_info = models.OneToOneField()
+
+    class Meta:
+        verbose_name = '商品'
+        verbose_name_plural = '商品'
+
+
+class CommodityInfo(models.Model):
+    pass

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from wx_user_ui.models import ModuleType, UserUI, BigImage
+from wx_user_ui.models import ModuleType, UserUI, BigImage, ShopName, Commodity
 
 
 # Register your models here.
@@ -14,3 +14,5 @@ class BigImageAdmin(admin.ModelAdmin):
 admin.site.register(ModuleType, ModuleTypeAdmin)
 admin.site.register(UserUI)
 admin.site.register(BigImage, BigImageAdmin)
+admin.site.register(ShopName)
+admin.site.register(Commodity)

@@ -6,10 +6,22 @@
 
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from wx_user_ui.models import BigImage
+from wx_user_ui.models import BigImage, ShopName, Commodity
 
 
 class BigImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BigImage
         fields = '__all__'
+
+
+class ShopNameSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ShopName
+        fields = '__all__'
+
+
+class CommoditySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Commodity
+        fields = ('id', 'name', 'min_price', 'max_price', 'pic')

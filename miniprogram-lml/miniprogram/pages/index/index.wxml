@@ -59,7 +59,7 @@
         </scroll-view>
     </view>
     <view class="goods-container">
-        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}">
+        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}" data-commodityinfo='{{item.commodity_info}}'>
            <view class="img-box">
               <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true"/>
            </view>

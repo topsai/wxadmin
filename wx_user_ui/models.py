@@ -1,4 +1,4 @@
-import django.db.models as models
+from django.db import models
 
 
 # Create your models here.
@@ -63,8 +63,7 @@ class Commodity(models.Model):
     # 原价
     max_price = models.SmallIntegerField()
     pic = models.CharField(max_length=256)
-
-    commodity_info = models.OneToOneField('CommodityInfo', on_delete='')
+    commodity_info = models.OneToOneField(to="CommodityInfo", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = '商品'
@@ -73,6 +72,9 @@ class Commodity(models.Model):
 
 class CommodityInfo(models.Model):
     com = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.com
 
     class Meta:
         verbose_name = '商品详情'

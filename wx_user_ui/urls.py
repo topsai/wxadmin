@@ -20,7 +20,8 @@ from wx_user_ui import views
 router = routers.DefaultRouter()
 router.register(r'imagelist', views.BigImageVIewSet)
 router.register(r'shopname', views.ShopNameVIewSet)
-router.register(r'Commodity', views.CommodityVIewSet)
+router.register(r'commodity', views.CommodityVIewSet)
+router.register(r'commodityinfo', views.CommodityInfoVIewSet)
 # router.register(r'groups', views.GroupViewSet)
 
 # 使用URL路由来管理我们的API

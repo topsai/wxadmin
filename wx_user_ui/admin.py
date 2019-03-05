@@ -15,9 +15,13 @@ class CommodityAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "min_price", "max_price", 'commodity_info')
 
 
+class CommodityInfoAdmin(admin.ModelAdmin):
+    list_display = ("id", "com")
+
+
 admin.site.register(ModuleType, ModuleTypeAdmin)
 admin.site.register(UserUI)
 admin.site.register(BigImage, BigImageAdmin)
 admin.site.register(ShopName)
 admin.site.register(Commodity, CommodityAdmin)
-admin.site.register(CommodityInfo)
+admin.site.register(CommodityInfo, CommodityInfoAdmin)

@@ -43,7 +43,7 @@ Page({
   },
   toDetailsTap: function(e) {
     wx.navigateTo({
-      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id
+      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id + "&commodityinfo=" + e.currentTarget.dataset.commodityinfo
     })
   },
   tapBanner: function(e) {
@@ -135,7 +135,7 @@ Page({
     console.log('获取商品列表')
     var that = this
     wx.request({
-      url: 'http://127.0.0.1:8000/api/Commodity/',
+      url: 'http://127.0.0.1:8000/api/commodity/',
       success:function(res){
         console.log(res.data)
         that.setData({

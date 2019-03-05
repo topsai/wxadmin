@@ -57,38 +57,47 @@ Page({
           shopNum: res.data.shopNum
         });
       }
-    })
-    WXAPI.goodsDetail(e.id).then(function(res) {
-      var selectSizeTemp = "";
-      if (res.data.properties) {
-        for (var i = 0; i < res.data.properties.length; i++) {
-          selectSizeTemp = selectSizeTemp + " " + res.data.properties[i].name;
-        }
+    }),
+    wx.request({
+      url: e.commodityinfo,
+      success:function(res){
+        console.log(res.data)
         that.setData({
-          hasMoreSelect: true,
-          selectSize: that.data.selectSize + selectSizeTemp,
-          selectSizePrice: res.data.basicInfo.minPrice,
-          totalScoreToPay: res.data.basicInfo.minScore
-        });
+          'com':res.data.com
+        })
       }
-      if (res.data.basicInfo.pingtuan) {
-        that.pingtuanList(e.id)
-      }
-      that.data.goodsDetail = res.data;
-      if (res.data.basicInfo.videoId) {
-        that.getVideoSrc(res.data.basicInfo.videoId);
-      }
-      that.setData({
-        goodsDetail: res.data,
-        selectSizePrice: res.data.basicInfo.minPrice,
-        totalScoreToPay: res.data.basicInfo.minScore,
-        buyNumMax: res.data.basicInfo.stores,
-        buyNumber: (res.data.basicInfo.stores > 0) ? 1 : 0
-      });
-      WxParse.wxParse('article', 'html', res.data.content, that, 5);
     })
-    this.reputation(e.id);
-    this.getKanjiaInfo(e.id);
+    // WXAPI.goodsDetail(e.id).then(function(res) {
+    //   var selectSizeTemp = "";
+    //   if (res.data.properties) {
+    //     for (var i = 0; i < res.data.properties.length; i++) {
+    //       selectSizeTemp = selectSizeTemp + " " + res.data.properties[i].name;
+    //     }
+    //     that.setData({
+    //       hasMoreSelect: true,
+    //       selectSize: that.data.selectSize + selectSizeTemp,
+    //       selectSizePrice: res.data.basicInfo.minPrice,
+    //       totalScoreToPay: res.data.basicInfo.minScore
+    //     });
+    //   }
+    //   if (res.data.basicInfo.pingtuan) {
+    //     that.pingtuanList(e.id)
+    //   }
+    //   that.data.goodsDetail = res.data;
+    //   if (res.data.basicInfo.videoId) {
+    //     that.getVideoSrc(res.data.basicInfo.videoId);
+    //   }
+    //   that.setData({
+    //     goodsDetail: res.data,
+    //     selectSizePrice: res.data.basicInfo.minPrice,
+    //     totalScoreToPay: res.data.basicInfo.minScore,
+    //     buyNumMax: res.data.basicInfo.stores,
+    //     buyNumber: (res.data.basicInfo.stores > 0) ? 1 : 0
+    //   });
+    //   WxParse.wxParse('article', 'html', res.data.content, that, 5);
+    // })
+    // this.reputation(e.id);
+    // this.getKanjiaInfo(e.id);
   },
   goShopCar: function() {
     wx.reLaunch({

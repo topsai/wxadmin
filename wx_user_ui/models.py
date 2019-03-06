@@ -1,4 +1,5 @@
-from django.db import models
+# from django.db import models
+import django.db.models as models
 
 
 # Create your models here.
@@ -79,3 +80,27 @@ class CommodityInfo(models.Model):
     class Meta:
         verbose_name = '商品详情'
         verbose_name_plural = '商品详情'
+
+
+class UserInfo(models.Model):
+    username = models.CharField(max_length=100)
+    openid= models.CharField(max_length=100)
+    tel = models.CharField(max_length=11)
+    history = models.ForeignKey("OrderInfo", on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = '用户信息'
+        verbose_name_plural = '用户信息'
+
+
+class OrderInfo(models.Model):
+    # 订单金额
+    quota = models.IntegerField()
+    time = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.quota
+
+    class Meta:
+        verbose_name = '订单详情'
+        verbose_name_plural = '订单详情'

@@ -16,7 +16,7 @@ Page({
     totalScoreToPay: 0,
     shopNum: 0,
     hideShopPopup: true,
-    buyNumber: 0,
+    buyNumber: 1,
     buyNumMin: 1,
     buyNumMax: 0,
 
@@ -35,7 +35,17 @@ Page({
     })
   },
   onLoad: function(e) {
-    console.log(e)
+    console.log('上一页传来的数据：', e)
+    // 从服务器获取当前页面数据
+    wx.request({
+      url: e.commodityinfo,
+      success: function(res) {
+        console.log(res.data)
+        that.setData({
+          'com': res.data.com
+        })
+      }
+    })
     if (e.inviter_id) {
       wx.setStorage({
         key: 'inviter_id_' + e.id,
@@ -50,54 +60,46 @@ Page({
     that.data.kjId = e.kjId;
     // 获取购物车数据
     wx.getStorage({
-      key: 'shopCarInfo',
-      success: function(res) {
-        that.setData({
-          shopCarInfo: res.data,
-          shopNum: res.data.shopNum
-        });
-      }
-    }),
-    wx.request({
-      url: e.commodityinfo,
-      success:function(res){
-        console.log(res.data)
-        that.setData({
-          'com':res.data.com
-        })
-      }
-    })
-    // WXAPI.goodsDetail(e.id).then(function(res) {
-    //   var selectSizeTemp = "";
-    //   if (res.data.properties) {
-    //     for (var i = 0; i < res.data.properties.length; i++) {
-    //       selectSizeTemp = selectSizeTemp + " " + res.data.properties[i].name;
-    //     }
-    //     that.setData({
-    //       hasMoreSelect: true,
-    //       selectSize: that.data.selectSize + selectSizeTemp,
-    //       selectSizePrice: res.data.basicInfo.minPrice,
-    //       totalScoreToPay: res.data.basicInfo.minScore
-    //     });
-    //   }
-    //   if (res.data.basicInfo.pingtuan) {
-    //     that.pingtuanList(e.id)
-    //   }
-    //   that.data.goodsDetail = res.data;
-    //   if (res.data.basicInfo.videoId) {
-    //     that.getVideoSrc(res.data.basicInfo.videoId);
-    //   }
-    //   that.setData({
-    //     goodsDetail: res.data,
-    //     selectSizePrice: res.data.basicInfo.minPrice,
-    //     totalScoreToPay: res.data.basicInfo.minScore,
-    //     buyNumMax: res.data.basicInfo.stores,
-    //     buyNumber: (res.data.basicInfo.stores > 0) ? 1 : 0
-    //   });
-    //   WxParse.wxParse('article', 'html', res.data.content, that, 5);
-    // })
-    // this.reputation(e.id);
-    // this.getKanjiaInfo(e.id);
+        key: 'shopCarInfo',
+        success: function(res) {
+          that.setData({
+            shopCarInfo: res.data,
+            shopNum: res.data.shopNum
+          });
+        }
+      })
+
+      // WXAPI.goodsDetail(e.id).then(function(res) {
+      //   var selectSizeTemp = "";
+      //   if (res.data.properties) {
+      //     for (var i = 0; i < res.data.properties.length; i++) {
+      //       selectSizeTemp = selectSizeTemp + " " + res.data.properties[i].name;
+      //     }
+      //     that.setData({
+      //       hasMoreSelect: true,
+      //       selectSize: that.data.selectSize + selectSizeTemp,
+      //       selectSizePrice: res.data.basicInfo.minPrice,
+      //       totalScoreToPay: res.data.basicInfo.minScore
+      //     });
+      //   }
+      //   if (res.data.basicInfo.pingtuan) {
+      //     that.pingtuanList(e.id)
+      //   }
+      //   that.data.goodsDetail = res.data;
+      //   if (res.data.basicInfo.videoId) {
+      //     that.getVideoSrc(res.data.basicInfo.videoId);
+      //   }
+      //   that.setData({
+      //     goodsDetail: res.data,
+      //     selectSizePrice: res.data.basicInfo.minPrice,
+      //     totalScoreToPay: res.data.basicInfo.minScore,
+      //     buyNumMax: res.data.basicInfo.stores,
+      //     buyNumber: (res.data.basicInfo.stores > 0) ? 1 : 0
+      //   });
+      //   WxParse.wxParse('article', 'html', res.data.content, that, 5);
+      // })
+      // this.reputation(e.id);
+      // this.getKanjiaInfo(e.id);
   },
   goShopCar: function() {
     wx.reLaunch({

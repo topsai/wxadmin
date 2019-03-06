@@ -96,32 +96,47 @@ Page({
     }
     wx.login({
       success: function(res) {
-        WXAPI.login(res.code).then(function(res) {
-          if (res.code == 10000) {
-            // 去注册
-            that.registerUser();
-            return;
+        wx.request({
+          url: 'http://127.0.0.1:8000/login',
+          data: {
+            code: res.code
+          },
+          success: function(res) {
+            console.log(res.data)
+            wx.setStorageSync('token', res.data.session_key)
+            wx.setStorageSync('uid', res.data.openid)
+            // 回到原来的地方放
+            app.navigateToLogin = false
+            wx.navigateBack();
           }
-          if (res.code != 0) {
-            // 登录错误
-            wx.hideLoading();
-            wx.showModal({
-              title: '提示',
-              content: '无法登录，请重试',
-              showCancel: false
-            })
-            return;
-          }
-          wx.setStorageSync('token', res.data.token)
-          wx.setStorageSync('uid', res.data.uid)
-          // 回到原来的地方放
-          app.navigateToLogin = false
-          wx.navigateBack();
         })
+        // WXAPI.login(res.code).then(function(res) {
+        //   if (res.code == 10000) {
+        //     // 去注册
+        //     that.registerUser();
+        //     return;
+        //   }
+        //   if (res.code != 0) {
+        //     // 登录错误
+        //     wx.hideLoading();
+        //     wx.showModal({
+        //       title: '提示',
+        //       content: '无法登录，请重试',
+        //       showCancel: false
+        //     })
+        //     return;
+        //   }
+        //   wx.setStorageSync('token', res.data.token)
+        //   wx.setStorageSync('uid', res.data.uid)
+        //   // 回到原来的地方放
+        //   app.navigateToLogin = false
+        //   wx.navigateBack();
+        // })
       }
     })
   },
   registerUser: function() {
+    return
     let that = this;
     wx.login({
       success: function(res) {
@@ -136,7 +151,7 @@ Page({
               referrer = referrer_storge;
             }
             // 下面开始调用注册接口
-            WXAPI.register( {
+            WXAPI.register({
               code: code,
               encryptedData: encryptedData,
               iv: iv,

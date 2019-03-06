@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from wx_user_ui import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('wx_user_ui.urls')),
+    path('login', views.login),
 ]

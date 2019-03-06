@@ -42,6 +42,7 @@ Page({
     })
   },
   toDetailsTap: function(e) {
+    console.log('--->', e)
     wx.navigateTo({
       url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id + "&commodityinfo=" + e.currentTarget.dataset.commodityinfo
     })
@@ -67,6 +68,7 @@ Page({
      * 示例：
      * 调用接口封装方法
      */
+    // 获取轮播图
     wx.request({
       url: 'http://127.0.0.1:8000/api/imagelist/',
       success:function(res){
@@ -131,6 +133,7 @@ Page({
       scrollTop: e.scrollTop
     })
   },
+  // 获取商品列表
   getGoodsList:function(){
     console.log('获取商品列表')
     var that = this

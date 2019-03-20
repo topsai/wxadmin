@@ -21,7 +21,7 @@ class ModuleType(models.Model):
     class Meta:
         verbose_name = '商品类型'
         verbose_name_plural = '商品类型'
-        default_related_name = "default_related_name"
+        default_related_name = "default_related_name1"
 
 
 class UserUI(models.Model):
@@ -73,6 +73,7 @@ class Commodity(models.Model):
 
 class CommodityInfo(models.Model):
     com = models.CharField(max_length=256)
+    big_pic = models.ForeignKey('BigPic', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.com
@@ -82,9 +83,14 @@ class CommodityInfo(models.Model):
         verbose_name_plural = '商品详情'
 
 
+class BigPic(models.Model):
+    pic_path = models.CharField(max_length=100)
+    pic_path1 = models.CharField(max_length=100)
+
+
 class UserInfo(models.Model):
     username = models.CharField(max_length=100)
-    openid= models.CharField(max_length=100)
+    openid = models.CharField(max_length=100)
     tel = models.CharField(max_length=11)
     history = models.ForeignKey("OrderInfo", on_delete=models.CASCADE)
 

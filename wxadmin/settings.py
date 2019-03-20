@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'wx_user_ui',
     'rest_framework',
+    'wx_user_ui'
 ]
 
 MIDDLEWARE = [
@@ -121,3 +121,34 @@ STATICFILES_DIRS = (
 
 wxloginapi = "https://api.weixin.qq.com/sns" \
              "/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code"
+
+
+"""
+
+    check
+    compilemessages
+    createcachetable
+    dbshell
+    diffsettings
+    dumpdata
+    flush
+    inspectdb
+    loaddata
+    makemessages
+    makemigrations
+    migrate
+    sendtestemail
+    shell
+    showmigrations
+    sqlflush
+    sqlmigrate
+    sqlsequencereset
+    squashmigrations
+    startapp
+    startproject
+    test
+    testserver
+
+
+
+"""

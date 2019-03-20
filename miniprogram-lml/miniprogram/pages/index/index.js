@@ -42,9 +42,12 @@ Page({
     })
   },
   toDetailsTap: function(e) {
-    console.log('--->', e)
+    var that = this;
+    console.log('--->', e);
+    console.log('--->==', e.currentTarget);
+    console.log(that);
     wx.navigateTo({
-      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id + "&commodityinfo=" + e.currentTarget.dataset.commodityinfo
+      url: "/pages/goods-details/index?id=" + e.currentTarget.dataset.id + "&commodityinfo=" + e.currentTarget.dataset.commodityinfo + "&min_price=" + e.currentTarget.dataset.min_price
     })
   },
   tapBanner: function(e) {

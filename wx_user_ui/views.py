@@ -1,8 +1,9 @@
 from django.shortcuts import render, HttpResponse
 
 # Create your views here.
-from wx_user_ui.models import BigImage, UserUI, ModuleType, ShopName, Commodity, CommodityInfo
-from wx_user_ui.serializers import BigImageSerializer, ShopNameSerializer, CommoditySerializer, CommodityInfoSerializer
+from wx_user_ui.models import BigImage, UserUI, ModuleType, ShopName, Commodity, CommodityInfo, BigPic
+from wx_user_ui.serializers import BigImageSerializer, ShopNameSerializer, CommoditySerializer, CommodityInfoSerializer, \
+    BigPicInfoSerializer
 from rest_framework import generics
 from rest_framework import viewsets
 from rest_framework import mixins
@@ -26,6 +27,11 @@ class CommodityVIewSet(viewsets.ModelViewSet):
 class CommodityInfoVIewSet(viewsets.ModelViewSet):
     queryset = CommodityInfo.objects.all()
     serializer_class = CommodityInfoSerializer
+
+
+class BigPicInfoVIewSet(viewsets.ModelViewSet):
+    queryset = BigPic.objects.all()
+    serializer_class = BigPicInfoSerializer
 
 
 from wxadmin.settings import wxloginapi

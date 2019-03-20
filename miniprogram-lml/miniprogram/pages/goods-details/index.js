@@ -36,13 +36,15 @@ Page({
   },
   onLoad: function(e) {
     console.log('上一页传来的数据：', e)
+    // this.data.goodsDetail.basicInfo.minPrice
     // 从服务器获取当前页面数据
     wx.request({
       url: e.commodityinfo,
       success: function(res) {
         console.log(res.data)
         that.setData({
-          'com': res.data.com
+          'com': res.data.com,
+          'min_price': e.min_price
         })
       }
     })
@@ -113,9 +115,10 @@ Page({
     this.bindGuiGeTap();
   },
   tobuy: function() {
+    console.log(this.data);
     this.setData({
       shopType: "tobuy",
-      selectSizePrice: this.data.goodsDetail.basicInfo.minPrice
+      selectSizePrice: this.data.min_price
     });
     this.bindGuiGeTap();
   },

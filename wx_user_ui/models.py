@@ -85,7 +85,7 @@ class CommodityInfo(models.Model):
 
 class BigPic(models.Model):
     pic_path = models.CharField(max_length=100)
-    pic_path1 = models.CharField(max_length=100)
+    # pic_path1 = models.CharField(max_length=100)
 
 
 class UserInfo(models.Model):
